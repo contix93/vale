@@ -1,0 +1,26 @@
+$white: #ffffff;
+$lightgreen : #95FCD0;
+$darkgreen : #95fcfa;
+$grey: #656565;
+
+$dbr : 18px;
+$de : cubic-bezier(0.955, 0.610, 0.580, 0.935);
+$dt : .4s;
+$dtHalf : .2s;
+$defaultBorderRadius : 18px;
+@function vh($unit){
+    @return calc(var(--vh, 1vh) * #{$unit});
+}
+@function vw($unit){
+    @return calc(var(--vw, 1vw) * #{$unit});
+}
+@function mw($unit){
+    @return calc(var(--vw, 1vw) * 100 / 30 * #{$unit});
+}
+@mixin media($w) {
+    @media screen and (max-width:#{$w}px) { @content; }
+}
+
+@mixin mediaH($h) {
+    @media screen and (max-height:#{$h}px) { @content; }
+}

@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@webdiscus/pug-loader": "^2.8.0",
+    "nuxt": "^3.0.0",
+    "pug": "^3.0.2",
+    "sass": "^1.52.1",
+    "sass-loader": "^10.2.1"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "gsap": "npm:@gsap/business@^3.11.0",
+    "http-proxy-middleware": "^2.0.6",
+    "storyblok-js-client": "^4.5.6"
+  }
+}
