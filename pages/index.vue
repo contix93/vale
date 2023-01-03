@@ -12,10 +12,11 @@ definePageMeta({
 })
 const route = useRoute();
 // const router = useRouter();
-const layout = useLayout();
-console.log('pages/index',layout.contentVisible.value)
 
 const { data:story, pending, error } = await useFetch('/api/storyblok/stories'+route.fullPath);
+
+const layout = useLayout();
+console.log('pages/index',layout.contentVisible.value)
 
 // router.beforeEach((to, from) => {
 //     console.log('to',to.path)
