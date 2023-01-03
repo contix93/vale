@@ -2,7 +2,8 @@
 #default
     mainHeader
     slot
-    .content 
+    .content(v-if="content")
+        video(v-if="content.video && content.video.filename" :src="content.video.filename" autoplay muted loop)
         | {{ content }}
 </template>
 <script setup>
@@ -16,5 +17,12 @@ const { content } = story.value;
         width: vw(100);
         height: vh(100);
         overflow: hidden;
+        > .content{
+            > video{
+                width: vw(100);
+                height: vh(100);
+                object-fit: cover;
+            }
+        }
     }
 </style>

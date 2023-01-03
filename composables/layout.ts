@@ -1,7 +1,8 @@
-function useLayout () {
-    const contentVisible = ref(false);
 
-    const toggleContent = (bool) => {
+import { useState } from '#app';
+function useLayout () {
+    const contentVisible = useState<any>('contentVisible', () => { return false });
+    const toggleContent = (bool:any) => {
         contentVisible.value = bool
     }
     return {
