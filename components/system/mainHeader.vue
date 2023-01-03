@@ -28,6 +28,7 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    background: purple;
     > .logo{
         opacity: 0;
         transform: translateY(-20px);

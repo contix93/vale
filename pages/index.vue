@@ -1,14 +1,28 @@
 <template lang='pug'>
-#page(:class="{open:fullPath != '/'}")
+#page(:class="{open:true}")
     .heading 
-        nuxtLink(:to="'/'") Close
+        nuxtLink(:to="'/'") {{ $__('back') }} 
     .loading(v-if="pending")
         h1 Loading 
     mainContent(v-else :story="story")
 </template>
 <script setup>
-const { fullPath } = useRoute();
-const { data:story, pending, error } = await useFetch('/api/storyblok/stories'+fullPath);
+definePageMeta({
+  middleware: ['page']
+})
+const route = useRoute();
+// const router = useRouter();
+const layout = useLayout();
+console.log('pages/index',layout.contentVisible.value)
+
+const { data:story, pending, error } = await useFetch('/api/storyblok/stories'+route.fullPath);
+
+// router.beforeEach((to, from) => {
+//     console.log('to',to.path)
+//     const bool = to.path.includes('pages');
+//     open.value = bool;
+//     return to.path;
+// })
 
 
 
@@ -19,7 +33,7 @@ const { data:story, pending, error } = await useFetch('/api/storyblok/stories'+f
     z-index: 2;
     height: vh(100);
     width: vw(50);
-    background: $white;
+    background: green;
     right: vw(-50);
     &.open{
         right: 0;
