@@ -16,17 +16,19 @@ onMounted(() => {
 const init = () => {
     var imageToDraw = null;
     video.value.addEventListener('play', (vid) => {
-        imageToDraw = vid.srcElement;
 
-        const loop = () => {
+        const loop = () => {            
+            imageToDraw = vid.srcElement;
+            imageToDraw.width = vid.srcElement.videoWidth;
+            imageToDraw.height = vid.srcElement.videoHeight;
+
             canvas.value.width = video.value.clientWidth;
             canvas.value.height = video.value.clientHeight;
 
             const ctx = canvas.value.getContext('2d');
-            const imageWidth = vid.srcElement.videoWidth;
-            const imageHeight = vid.srcElement.videoHeight;
+            
+            coverImg(imageToDraw, ctx, 'cover')
 
-            drawImageScaled(imageToDraw, imageWidth, imageHeight, ctx)
             setTimeout(loop, 1000 / 30);
         }
         loop();
@@ -34,19 +36,18 @@ const init = () => {
     video.value.play();
 }
 
-const drawImageScaled = function (img, imgWidth, imgHeight, ctx) {
-    var canvas = ctx.canvas;
-    var hRatio = canvas.width  / imgWidth;
-    var vRatio =  canvas.height / imgHeight;
-    var ratio  = Math.min ( hRatio, vRatio );
-    
-    console.log(canvas.width, imgWidth, hRatio);
-
-    var centerShift_x = ( canvas.width - imgWidth*ratio ) / 2;
-    var centerShift_y = ( canvas.height - imgHeight*ratio ) / 2;  
-    ctx.clearRect(0,0,canvas.width, canvas.height);
-    ctx.drawImage(img, 0,0, imgWidth, imgHeight, centerShift_x, centerShift_y, imgWidth*ratio, imgHeight*ratio);  
-    // ctx.drawImage(img, 0,0, imgWidth, imgHeight);  
+const coverImg = (img, ctx, type = 'cover') => {
+    // https://stackoverflow.com/questions/21961839/simulation-background-size-cover-in-canvas
+    const imgRatio = img.height / img.width
+    const canvasRatio = ctx.canvas.height / ctx.canvas.width
+    if ((imgRatio < canvasRatio && type === 'contain') || (imgRatio > canvasRatio && type === 'cover')) {
+        const h = ctx.canvas.width * imgRatio
+        ctx.drawImage(img, 0, (ctx.canvas.height - h) / 2, ctx.canvas.width, h)
+    }
+    if ((imgRatio > canvasRatio && type === 'contain') || (imgRatio < canvasRatio && type === 'cover')) {
+        const w = ctx.canvas.width * canvasRatio / imgRatio
+        ctx.drawImage(img, (ctx.canvas.width - w) / 2, 0, w, ctx.canvas.height)
+    }
 }
 
 </script>
@@ -63,7 +64,7 @@ const drawImageScaled = function (img, imgWidth, imgHeight, ctx) {
         left: 0;
         width: 100%;
         height: 100%;
-        // object-fit: cover;
+        object-fit: cover;
         z-index: 2;
         clip-path: url(#cursor);
         // &.cover{
