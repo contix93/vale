@@ -27,7 +27,7 @@ const init = () => {
 
             const ctx = canvas.value.getContext('2d');
             
-            coverImg(imageToDraw, ctx, 'cover')
+            drawImage(imageToDraw, ctx, 'cover')
 
             setTimeout(loop, 1000 / 30);
         }
@@ -36,7 +36,7 @@ const init = () => {
     video.value.play();
 }
 
-const coverImg = (img, ctx, type = 'cover') => {
+const drawImage = (img, ctx, type = 'cover') => {
     // https://stackoverflow.com/questions/21961839/simulation-background-size-cover-in-canvas
     const imgRatio = img.height / img.width
     const canvasRatio = ctx.canvas.height / ctx.canvas.width

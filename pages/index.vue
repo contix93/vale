@@ -1,38 +1,32 @@
 <template lang='pug'>
-#page(:class="{open:layout.contentVisible.value}")
+#index
     .heading 
         nuxtLink(:to="'/'") {{ $__('back') }} 
-    .loading(v-if="!content")
+    .loading(v-if="pending")
         h1 Loading 
-    mainContent(v-else :story="content")
+    mainContent(v-else :story="story")
 </template>
 <script setup>
 definePageMeta({
   middleware: ['page']
 })
 const route = useRoute();
-const layout = useLayout();
-const content = ref(null);
+var story = ref(null);
+var pending = ref(true);
+var error = ref(false);
+
 if(route.fullPath.includes('pages')){
-    const { data:story, pending, error } = await useFetch('/api/storyblok/stories'+route.fullPath);
-    content.value = story;
+    const fetchRes = await useFetch('/api/storyblok/stories'+route.fullPath);
+    story = fetchRes.data;
+    pending = fetchRes.pending;
+    error = fetchRes.error;
 }
 
 </script>
 <style lang="scss">
-#page{
-    position: absolute;
-    z-index: 2;
-    height: vh(100);
-    width: vw(70);
-    background: green;
-    right: vw(-70);
+#index{
     padding: mw(1) mw(2);
     box-sizing: border-box;
-    
-    &.open{
-        right: 0;
-    }
     > .heading{
         display: flex;
         justify-content: flex-end;

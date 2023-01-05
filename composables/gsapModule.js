@@ -1,8 +1,6 @@
 import { gsap, ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollToPlugin, MotionPathHelper } from 'gsap/all';
-// import { SplitText } from 'gsap/SplitText';
 export default () => {
     onMounted(() => {
-        
         gsap.registerPlugin(ScrollTrigger)
         gsap.registerPlugin(SplitText);
         gsap.registerPlugin(DrawSVGPlugin);

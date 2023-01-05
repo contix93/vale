@@ -2,7 +2,7 @@
 #mainHeader(v-if="!pending" :class="{visible:visible}" ref="mainHeader")
     .logo
     
-    .menu
+    .menu(v-if="story && story.content && story.content.items")
         nuxtLink.item(v-for="i in story.content.items" :to="'/'+i.url.cached_url" :key="'item_'+i._uid")
             span {{i.label}}
 
