@@ -3,7 +3,7 @@
     .heading 
         nuxtLink(:to="'/'") {{ $__('back') }} 
     .loading(v-if="pending")
-        h1 Loading 
+        mainLoading
     mainContent(v-else :story="story")
 </template>
 <script setup>
@@ -31,6 +31,12 @@ if(route.fullPath.includes('pages')){
         display: flex;
         justify-content: flex-end;
         margin-bottom: 20px;
+    }
+    > .loading{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
     }
 }
 </style>

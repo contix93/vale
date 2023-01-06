@@ -37,7 +37,7 @@ const handlePage = (open) => {
             z-index: 2;
             height: vh(100);
             width: 70%;
-            background: green;
+            background: $white;
             right: -70%;
         }
         
