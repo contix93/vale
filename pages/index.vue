@@ -27,6 +27,8 @@ if(route.fullPath.includes('pages')){
 #index{
     padding: mw(1) mw(2);
     box-sizing: border-box;
+    overflow-y: scroll;
+    height: vh(100);
     > .heading{
         display: flex;
         justify-content: flex-end;

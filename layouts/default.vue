@@ -4,7 +4,7 @@
     #page
         slot
     .content(v-if="story && !error")
-        backgroundVideo(v-if="story.content.video" :video="story.content.video")
+        backgroundVideo(v-if="story.content && story.content.video" :video="story.content.video")
 </template>
 <script setup>
 const { data:story, pending, error } = await useFetch('/api/storyblok/stories/homepage');
