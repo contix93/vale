@@ -29,6 +29,18 @@ if(route.fullPath.includes('pages')){
     box-sizing: border-box;
     overflow-y: scroll;
     height: vh(100);
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: $pink;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
     > .heading{
         display: flex;
         justify-content: flex-end;

@@ -9,5 +9,8 @@ const props = defineProps(['blok']);
 </script>
 
 <style lang="scss">
-
+.simpleImage{
+    width: 100%;
+    height: mw(10);
+}
 </style>

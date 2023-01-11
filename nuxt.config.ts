@@ -46,7 +46,7 @@ export default defineNuxtConfig({
             STORYBLOK_KEY: process.env.NODE_ENV == 'development' ? process.env.STORYBLOK_DEV : process.env.STORYBLOK_PRODUCTION
         }
     },
-    css: [,"@/assets/scss/main.scss"],
+    css: [,"@/assets/scss/main.scss", '@/node_modules/remixicon/fonts/remixicon.css'],
     vite: {
         css: {
             preprocessorOptions: {
