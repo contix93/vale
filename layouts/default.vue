@@ -1,6 +1,9 @@
 <template lang='pug'>
 #default
     mainHeader
+    .heading 
+        h1(v-if="story.content && story.content.title" v-html="story.content.title")
+        .text(v-if="story.content.text" v-html="richText(story.content.text)")
     #page
         slot
     .content(v-if="story && !error")
@@ -8,6 +11,7 @@
 </template>
 <script setup>
 const { data:story, pending, error } = await useFetch('/api/storyblok/stories/homepage');
+const { richText } = richTextModule();
 const { gsap } = gsapModule();
 const layout = useLayout();
 const window = useWindow();
@@ -33,9 +37,18 @@ const handlePage = (open) => {
         width: vw(100);
         height: vh(100);
         overflow: hidden;
+        > .heading{
+            position: absolute;
+            top: mw(4);
+            left: mw(4);
+            z-index: 4;
+            > h1{
+                color: $grey;
+            }
+        }
         > #page{
             position: absolute;
-            z-index: 2;
+            z-index: 5;
             height: vh(100);
             width: mw(22);
             background: $white;
