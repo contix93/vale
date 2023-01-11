@@ -1,55 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;400;500&display=swap');
 html,body{
     margin: 0;
     font-size: 10px;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    font-family: 'Poppins', sans-serif;
 }
 body{
-    // font-family: itc-avant-garde-gothic-pro, sans-serif;
-    font-family: 'Inter', sans-serif;
     font-weight: 300;
     font-style: normal;
     background-color: white;
     font-size: 1.3rem;
 }
-p,h1,h2,h3,h4,h5,h6{
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Dancing Script', cursive;
     margin-top: 0;
+    font-weight: normal;
     &.grey,.grey{
         color: $grey;
     }
+    &.pink, .pink{
+        color: $pinkText
+    }
 }
 p{
-    font-size: 1.3rem;
+    margin-top: 0;
+    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif;
     &.bold{
         font-weight: bold;
     }
 }
-h1,h2{
-    // font-family: baskerville-urw, serif;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    line-height: 1em;
-    color: rgb(86, 86, 86);
-    strong,b,.bold,&.bold{
-        font-weight: 700;
-        font-style: normal;
-        color: black;
-    }
-}
 h1{
-    font-weight: normal;
-    font-size: mw(1.4);
+    font-size: 6rem
 }
 h2{
-    font-weight: normal;
-    font-size: mw(0.8);
+    font-size: 4rem
 }
 h3{
-    font-family: itc-avant-garde-gothic-pro, sans-serif;
-    font-weight: normal;
-    font-size: 3rem;
+    font-size: 3rem
+}
+h4{
+    font-size: 1.6rem
+}
+h5{
+    font-size: 1.4rem
+}
+h6{
+    font-size: 1.2rem
 }
 section{
     margin-bottom: mw(1);
@@ -75,4 +74,8 @@ section{
         background: $darkgreen;
         color: white;
     }
+}
+a{
+    color: $grey;
+    text-decoration: underline;
 }

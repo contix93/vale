@@ -1,7 +1,5 @@
 <template lang="pug">
 #mainHeader(v-if="!pending" :class="{visible:visible}" ref="mainHeader")
-    .logo
-    
     .menu(v-if="story && story.content && story.content.items")
         nuxtLink.item(v-for="i in story.content.items" :to="'/'+i.url.cached_url" :key="'item_'+i._uid")
             span {{i.label}}
@@ -28,21 +26,15 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    background: purple;
-    > .logo{
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: opacity $dt $de, transform $dt $de;
-        width: 150px;
-        height: 70px;
-        background: red;
-    }
+    justify-content: flex-end;
     > .menu{
         > .item{
             opacity: 0;
             transform: translateY(-20px);
             transition: opacity $dt $de, transform $dt $de;
             font-size: 1.5rem;
+            color: $grey;
+            text-decoration: none;
         }
     }
     &.visible{
@@ -69,12 +61,7 @@
         > .item{
             cursor: pointer;
             &:not(:last-child){
-                margin-right: mw(1);
-            }
-            &:last-child{
-                box-sizing: border-box;
-                border-radius: 30px;
-                font-weight: 700;  
+                margin-right: 60px;
             }
         }
     }

@@ -10,6 +10,7 @@
 const { data:story, pending, error } = await useFetch('/api/storyblok/stories/homepage');
 const { gsap } = gsapModule();
 const layout = useLayout();
+const window = useWindow();
 onMounted(() => {
     if(layout.contentVisible.value) handlePage(true)
 })
@@ -19,9 +20,9 @@ watch(layout.contentVisible, (to,from) => {
 
 const handlePage = (open) => {
     if(open){
-        gsap.fromTo('#page',{ right: '-70%' },{ right: '0%' })
+        gsap.fromTo('#page',{ right: -(window.mw.value * 22) },{ right: 0 })
     }else{
-        gsap.fromTo('#page',{ right: '0%' },{ right: '-70%' })
+        gsap.fromTo('#page',{ right: 0 },{ right: -(window.mw.value * 22) })
     }
 }
 </script>
@@ -36,9 +37,9 @@ const handlePage = (open) => {
             position: absolute;
             z-index: 2;
             height: vh(100);
-            width: 70%;
+            width: mw(22);
             background: $white;
-            right: -70%;
+            right: mw(-22);
         }
         
     }

@@ -24,7 +24,7 @@ const playVideo = () => {
 <style lang="scss">
 .simpleVideo{
     margin: 0 auto;
-    width: mw(10);
+    width: mw(12);
     height: mw(7);
     display: flex;
     position: relative;

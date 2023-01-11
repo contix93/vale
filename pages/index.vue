@@ -1,7 +1,7 @@
 <template lang='pug'>
 #index
-    .heading 
-        nuxtLink(:to="'/'") {{ $__('back') }} 
+    .heading
+        cta(:blok="{link:{url:'/'},label:$__('back')}" :icon="'ri-arrow-left-s-line'")
     .loading(v-if="pending")
         mainLoading
     mainContent(v-else :story="story")
