@@ -1,5 +1,5 @@
 <template lang="pug">
-section.attachments(v-if="props.blok.assets && props.blok.assets.length > 0")
+section.attachments(v-if="props.blok.assets && props.blok.assets.length > 0" :class="props.blok.align")
     .item(v-for="item in props.blok.assets" :key="item.id")
         cta(:blok="{link:{url:item.filename, target:'_blank'}, label:item.title}" :icon="'ri-file-download-line'")
 </template>
@@ -11,6 +11,15 @@ const props = defineProps(['blok']);
 
 <style lang="scss">
 .attachments{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    &.center{
+        align-items: center;
+    }
+    &.right{
+        align-items: flex-end;
+    }
     .item{
         margin-bottom: 20px;
         &:last-child{

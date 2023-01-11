@@ -34,7 +34,7 @@ if(route.fullPath.includes('pages')){
         height: 10px;
     }
     &::-webkit-scrollbar-thumb {
-        background: $pink;
+        background: $blue;
         border-radius: 10px;
         cursor: pointer;
     }

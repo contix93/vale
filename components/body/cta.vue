@@ -28,7 +28,7 @@ const props = defineProps(['blok','icon']);
         color: $grey;
     }
     &:hover{
-        background: $pink;
+        background: $blue;
     }
 }
 

@@ -1,6 +1,6 @@
 <template lang="pug">
 section.simpleVideo(v-if="props.blok.video && props.blok.video.filename" :class="{playing:playing}")
-    .poster(v-if="props.blok.poster" @click.prevent="playVideo()")
+    .poster(v-if="props.blok.poster && props.blok.poster.filename" @click.prevent="playVideo()")
         i.ri-play-circle-line
         img2x(:data="props.blok.poster")
     .video 
@@ -51,7 +51,7 @@ const playVideo = () => {
             left: 50%;
             transform: translate(-50%,-50%);
             font-size: 6rem;
-            color: $pink;
+            color: $blue;
             z-index: 2;
         }
     }

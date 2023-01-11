@@ -39,7 +39,7 @@ const handlePage = (open) => {
         overflow: hidden;
         > .heading{
             position: absolute;
-            top: mw(4);
+            top: mw(6);
             left: mw(4);
             z-index: 4;
             > h1{

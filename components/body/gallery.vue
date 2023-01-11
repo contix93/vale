@@ -39,7 +39,7 @@ const props = defineProps(['blok']);
             height: 10px;
         }
         &::-webkit-scrollbar-thumb {
-            background: $pink;
+            background: $blue;
             border-radius: 10px;
             cursor: pointer;
         }
