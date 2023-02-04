@@ -20,8 +20,8 @@ const { richText } = richTextModule();
         flex-direction: row-reverse;
     }
     > .text{
-        flex: 0 0 mw(9);
-        padding: mw(1) 0;
+        flex: 0 1 100%;
+        padding: mw(1) mw(1) 0 0;
     }
     > .image{
         flex: 0 0 mw(8);

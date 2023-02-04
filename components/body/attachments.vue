@@ -1,7 +1,7 @@
 <template lang="pug">
 section.attachments(v-if="props.blok.assets && props.blok.assets.length > 0" :class="props.blok.align")
     .item(v-for="item in props.blok.assets" :key="item.id")
-        cta(:blok="{link:{url:item.filename, target:'_blank'}, label:item.title}" :icon="'ri-file-download-line'")
+        cta.download(:blok="{link:{url:item.filename, target:'_blank'}, label:item.title}" :icon="'ri-file-download-line'")
 </template>
 
 <script setup>

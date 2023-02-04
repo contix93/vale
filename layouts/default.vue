@@ -1,5 +1,5 @@
 <template lang='pug'>
-#default
+#default(:class="{inPage:layout.contentVisible.value}")
     mainHeader
     .heading 
         h1(v-if="story.content && story.content.title" v-html="story.content.title")
@@ -8,6 +8,7 @@
         slot
     .content(v-if="story && !error")
         backgroundVideo(v-if="story.content && story.content.video" :video="story.content.video")
+        modelContainer
 </template>
 <script setup>
 const { data:story, pending, error } = await useFetch('/api/storyblok/stories/homepage');
@@ -24,9 +25,9 @@ watch(layout.contentVisible, (to,from) => {
 
 const handlePage = (open) => {
     if(open){
-        gsap.fromTo('#page',{ right: -(window.mw.value * 22) },{ right: 0 })
+        gsap.fromTo('#page',{ right: -(window.mw.value * 20) },{ right: 0 })
     }else{
-        gsap.fromTo('#page',{ right: 0 },{ right: -(window.mw.value * 22) })
+        gsap.fromTo('#page',{ right: 0 },{ right: -(window.mw.value * 20) })
     }
 }
 </script>
@@ -37,11 +38,29 @@ const handlePage = (open) => {
         width: vw(100);
         height: vh(100);
         overflow: hidden;
+        &::after{
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: rgb(26, 26, 26);
+            opacity: 0;
+            transition: opacity $dt $de;
+            pointer-events: none;
+            position: absolute;
+            z-index: 4;
+            top:0;
+            left: 0;
+        }
+        &.inPage{
+            &::after{
+                opacity: 1;
+            }
+        }
         > .heading{
             position: absolute;
             top: mw(6);
             left: mw(4);
-            z-index: 4;
+            z-index: 3;
             > h1{
                 color: $grey;
             }
@@ -50,9 +69,9 @@ const handlePage = (open) => {
             position: absolute;
             z-index: 5;
             height: vh(100);
-            width: mw(22);
+            width: mw(20);
             background: $white;
-            right: mw(-22);
+            right: mw(-20);
         }
         
     }

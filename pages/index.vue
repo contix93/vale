@@ -1,7 +1,5 @@
 <template lang='pug'>
 #index
-    .heading
-        cta(:blok="{link:{url:'/'},label:$__('back')}" :icon="'ri-arrow-left-s-line'")
     .loading(v-if="pending")
         mainLoading
     mainContent(v-else :story="story")
@@ -25,7 +23,7 @@ if(route.fullPath.includes('pages')){
 </script>
 <style lang="scss">
 #index{
-    padding: mw(1) mw(2);
+    padding: mw(2) mw(2) mw(1) mw(2);
     box-sizing: border-box;
     overflow-y: scroll;
     height: vh(100);
@@ -40,11 +38,6 @@ if(route.fullPath.includes('pages')){
     }
     &::-webkit-scrollbar-track {
         background: transparent;
-    }
-    > .heading{
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 20px;
     }
     > .loading{
         display: flex;

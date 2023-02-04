@@ -1,14 +1,16 @@
 <template lang="pug">
-#mainHeader(v-if="!pending" :class="{visible:visible}" ref="mainHeader")
+#mainHeader(v-if="!pending" :class="{visible:visible, showBack:layout.contentVisible.value}" ref="mainHeader")
+    cta(:blok="{link:{url:'/'},label:$__('backToHome')}" :icon="'ri-arrow-left-s-line'")
     .menu(v-if="story && story.content && story.content.items")
         nuxtLink.item(v-for="i in story.content.items" :to="'/'+i.url.cached_url" :key="'item_'+i._uid")
             span {{i.label}}
-
 
 </template>
 <script setup>
     const { data:story, pending, error } = await useAsyncData(() => { return $fetch('/api/storyblok/stories/system/mainmenu') })
     var visible = ref(false);
+    const layout = useLayout();
+
     onMounted(() =>{
         setTimeout(() => {
             visible.value = true;
@@ -19,14 +21,24 @@
 #mainHeader{
     position: absolute;
     top: 3rem;
-    left: 6rem;
-    right: 6rem;
-    z-index: 2;
+    z-index: 6;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    justify-content: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    max-width: mw(20);
+    left: mw(10);
+    padding: 0 6rem;
+    
+    > .cta{
+        padding-left: 0;
+        margin-bottom: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity $dt $de;
+    }
     > .menu{
         > .item{
             opacity: 0;
@@ -38,6 +50,12 @@
         }
     }
     &.visible{
+        &.showBack{
+            > .cta{
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
         > .logo{
             opacity: 1;
             transform: translateY(0px);

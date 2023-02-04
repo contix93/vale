@@ -38,6 +38,12 @@ export default defineNuxtConfig({
                 //     onload : "this.onload=null;this.rel='stylesheet';"
                 // }
             ],
+            script : [
+                {
+                    type: 'module',
+                    src: 'https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js'
+                }
+            ]
         }
     },
     runtimeConfig: {

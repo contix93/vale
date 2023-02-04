@@ -15,8 +15,9 @@
     "sass-loader": "^10.2.1"
   },
   "dependencies": {
+    "@google/model-viewer": "^3.0.0",
     "axios": "^0.27.2",
-    "gsap": "npm:@gsap/business@^3.11.0",
+    "gsap": "npm:@gsap/business@^3.11.4",
     "http-proxy-middleware": "^2.0.6",
     "remixicon": "^2.5.0",
     "storyblok-js-client": "^4.5.6"
