@@ -19,6 +19,10 @@ if(route.fullPath.includes('pages')){
     pending = fetchRes.pending;
     error = fetchRes.error;
 }
+const layout = useLayout();
+// layout.setCameraPositions(story.value.content && story.value.content.cameraPositions && story.value.content.cameraPositions.length > 0 ? story.value.content.cameraPositions : null)
+
+
 
 </script>
 <style lang="scss">

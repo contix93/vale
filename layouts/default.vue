@@ -6,9 +6,9 @@
         .text(v-if="story.content.text" v-html="richText(story.content.text)")
     #page
         slot
-    .content(v-if="story && !error")
+    .content(v-if="story && story.content && !error")
         backgroundVideo(v-if="story.content && story.content.video" :video="story.content.video")
-        modelContainer
+        modelContainer(:model="story.content.asset" :exposure="story.content.exposure" :shadow-intensity="story.content.shadowIntensity" :autorotate="story.content.autorotate")
 </template>
 <script setup>
 const { data:story, pending, error } = await useFetch('/api/storyblok/stories/homepage');
