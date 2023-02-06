@@ -20,7 +20,7 @@ if(route.fullPath.includes('pages')){
     error = fetchRes.error;
 }
 const layout = useLayout();
-// layout.setCameraPositions(story.value.content && story.value.content.cameraPositions && story.value.content.cameraPositions.length > 0 ? story.value.content.cameraPositions : null)
+layout.setCameraPositions(story && story.value && story.value.content && story.value.content.cameraPositions && story.value.content.cameraPositions.length > 0 ? story.value.content.cameraPositions : null)
 
 
 

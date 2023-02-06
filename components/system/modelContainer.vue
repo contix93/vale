@@ -9,6 +9,7 @@ const layout = useLayout();
 const modelContainer = ref();
 var currentIndex = 0;
 var cameraPositions = layout.cameraPositions.value;
+var intervalHolder = null;
 
 
 const init = () => {
@@ -26,30 +27,42 @@ const init = () => {
         
         modelViewer.setAttribute('shadow-intensity',props.shadowIntensity ?? defParams.shadowIntensity);
         modelViewer.setAttribute('exposure',props.exposure ?? defParams.exposure);
-        modelViewer.setAttribute('auto-rotate',props.autorotate);
+        if(props.autorotate) modelViewer.setAttribute('auto-rotate',props.autorotate);
         modelViewer.setAttribute('interpolation-decay',200);
         modelViewer.setAttribute('environment-image','/spruit_sunrise_1k_HDR.hdr');
 
         modelContainer.value.appendChild(modelViewer);
 
-        setInterval(() => {
-            changeCameraPosition(currentIndex);
-        }, 5000)
+        startInterval()
     }
     
 }
-const changeCameraPosition = (index) => {
-    console.log(cameraPositions)
-    if(index >= cameraPositions.length) currentIndex = 0;
-
-    var orbit = cameraPositions[currentIndex].cameraX+'deg '+cameraPositions[currentIndex].cameraY+'deg '+cameraPositions[currentIndex].distance+'%';
-    //modelViewer.cameraOrbit = orbit;
-
-    currentIndex++;
+const startInterval = () => {
+    intervalHolder = setInterval(() => {
+        changeCameraPosition(currentIndex);
+    }, 5000)
 }
+const changeCameraPosition = (index) => {
+    if(cameraPositions && cameraPositions.length > 0){
+        if(!isNaN(index)) currentIndex = index;
+
+        var orbit = cameraPositions[currentIndex].cameraY+'deg '+cameraPositions[currentIndex].cameraX+'deg '+cameraPositions[currentIndex].distance+'%';
+        modelViewer.cameraOrbit = orbit;
+
+        currentIndex++;
+
+        if(currentIndex >= cameraPositions.length) currentIndex = 0;
+    }
+    
+}
+onBeforeUnmount(() => {
+    if(intervalHolder) clearInterval(intervalHolder);
+})
 watch(layout.cameraPositions,(to) => {
-    cameraPositions = to.value;
-    changeCameraPosition(0)
+    if(intervalHolder) clearInterval(intervalHolder);
+    cameraPositions = to;
+    changeCameraPosition(0);
+    startInterval();
 })
 onMounted(() => {
     init();

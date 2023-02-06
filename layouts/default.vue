@@ -8,7 +8,9 @@
         slot
     .content(v-if="story && story.content && !error")
         backgroundVideo(v-if="story.content && story.content.video" :video="story.content.video")
-        modelContainer(:model="story.content.asset" :exposure="story.content.exposure" :shadow-intensity="story.content.shadowIntensity" :autorotate="story.content.autorotate")
+
+        //gestire meglio la transizione di opacity
+        modelContainer(v-if="layout.contentVisible.value" :model="story.content.asset" :exposure="story.content.exposure" :shadow-intensity="story.content.shadowIntensity" :autorotate="story.content.autorotate")
 </template>
 <script setup>
 const { data:story, pending, error } = await useFetch('/api/storyblok/stories/homepage');
