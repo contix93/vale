@@ -33,6 +33,7 @@ const init = () => {
 
         modelContainer.value.appendChild(modelViewer);
 
+        changeCameraPosition(0)
         startInterval()
     }
     

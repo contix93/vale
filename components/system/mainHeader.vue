@@ -47,6 +47,31 @@
             font-size: 1.5rem;
             color: $grey;
             text-decoration: none;
+            > span{
+                position: relative;
+                &:before,&:after{
+                    content: "";
+                    position: absolute;
+                    height: 1px;
+                    background: $lightGrey;
+                    width: 0%;
+                    bottom: -2px;
+                    transition: width $dt $de;
+                }
+                &:before{
+                    right: 50%;
+                }
+                &:after{
+                    left: 50%;
+                }
+            }
+            &:hover, &.router-link-active{
+                > span{
+                    &:before,&:after{
+                        width: 50%;
+                    }
+                }
+            }
         }
     }
     &.visible{
