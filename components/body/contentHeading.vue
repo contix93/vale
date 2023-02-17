@@ -15,8 +15,8 @@ onMounted(() => {
 
     console.log(title,subtitle)
     var tl = gsap.timeline();
-    tl.fromTo(title.words,{y: 60, opacity: 0},{y:0, opacity: 1, stagger: 0.1});
-    tl.fromTo(subtitle.words,{y: 60, opacity: 0},{y:0, opacity: 1, stagger: 0.1});
+    tl.fromTo(title.words,{y: 10, opacity: 0},{y:0, opacity: 1, stagger: 0.05});
+    tl.fromTo(subtitle.words,{y: 10, opacity: 0},{y:0, opacity: 1, stagger: 0.05});
 })
 
 </script>
@@ -24,7 +24,7 @@ onMounted(() => {
 #heading{
     margin-bottom: mw(2);
     > * {
-        overflow: hidden;    
+        // overflow: hidden;    
         h1{
             margin-bottom: 10px;
             > * {

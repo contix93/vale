@@ -1,5 +1,5 @@
 <template lang='pug'>
-#default(:class="{inPage:layout.contentVisible.value}")
+#default(v-if="story" :class="{inPage:layout.contentVisible.value}")
     mainHeader
     .heading 
         h1(v-if="story.content && story.content.title" v-html="story.content.title")
