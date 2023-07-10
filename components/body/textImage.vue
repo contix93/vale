@@ -2,7 +2,7 @@
 section.textImage(ref="$el" :class="{reverse:props.blok.align == 'right'}")
     .text(v-html="richText(props.blok.text)")
     .image(v-if="props.blok.image")
-        img2x(:data="props.blok.image")
+        img2x(:data="props.blok.image" :animate="true")
 </template>
 
 <script setup>
