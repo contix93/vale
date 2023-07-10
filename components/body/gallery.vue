@@ -1,5 +1,5 @@
 <template lang="pug">
-section.gallery(v-if="props.blok.assets && props.blok.assets.length > 0")
+section.gallery(ref="$el" v-if="props.blok.assets && props.blok.assets.length > 0")
     .wrapper
         .item(v-for="item in props.blok.assets" :key="item.id")
             img2x(:data="item")
@@ -7,6 +7,23 @@ section.gallery(v-if="props.blok.assets && props.blok.assets.length > 0")
 
 <script setup>
 const props = defineProps(['blok']);
+const { gsap, SplitText, defaultTriggerConfig } = gsapModule();
+const $el = ref();
+
+onMounted(() => {
+    const items = $el.value.querySelectorAll('.item');
+    gsap.fromTo(items,
+    {
+        y: 10, 
+        opacity: 0
+    },
+    {
+        y:0, 
+        stagger: .2,
+        opacity: 1,
+        scrollTrigger: defaultTriggerConfig($el.value)
+    });
+})
 
 </script>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-section.simpleVideo(v-if="props.blok.video && props.blok.video.filename" :class="{playing:playing}")
+section.simpleVideo(ref="$el" v-if="props.blok.video && props.blok.video.filename" :class="{playing:playing}")
     .poster(v-if="props.blok.poster && props.blok.poster.filename" @click.prevent="playVideo()")
         i.ri-play-circle-line
         img2x(:data="props.blok.poster")
@@ -18,6 +18,22 @@ const playVideo = () => {
         playing.value = true;
     } 
 }
+const { gsap, SplitText, defaultTriggerConfig } = gsapModule();
+const $el = ref();
+
+onMounted(() => {
+    gsap.fromTo($el.value,
+    {
+        y: 10, 
+        opacity: 0
+    },
+    {
+        y:0, 
+        opacity: 1,
+        scrollTrigger: defaultTriggerConfig($el.value)
+    });
+})
+
 
 </script>
 
