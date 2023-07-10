@@ -47,13 +47,23 @@ export default defineNuxtConfig({
         }
     },
     runtimeConfig: {
-        env: process.env.NODE_ENV == 'development'? 'development' : 'production', 
+        env: process.env.ENVIROMENT, 
+        api: {
+            baseUrl: process.env.API_BASE_URL
+        },
         public: {
-            STORYBLOK_KEY: process.env.NODE_ENV == 'development' ? process.env.STORYBLOK_DEV : process.env.STORYBLOK_PRODUCTION
+            env: process.env.ENVIROMENT, 
+            storyblokVersion: process.env.STORYBLOK_API_VERSION,
+            defaultLanguage: 'it',
+            STORYBLOK_KEY: process.env.STORYBLOK_API_KEY,
+            baseUrl: process.env.API_BASE_URL
         }
     },
     css: [,"@/assets/scss/main.scss", '@/node_modules/remixicon/fonts/remixicon.css'],
     vite: {
+        optimizeDeps: { 
+            exclude: ["fsevents"]
+        },
         css: {
             preprocessorOptions: {
                 scss: {
@@ -62,4 +72,13 @@ export default defineNuxtConfig({
             },
         },
     },
+    modules: [
+        [
+            '@storyblok/nuxt', { 
+                accessToken: process.env.STORYBLOK_API_KEY
+            }
+        ],
+        // "@nuxtjs/robots",
+        // 'nuxt-simple-sitemap' //https://nuxt.com/modules/simple-sitemap
+    ],
 })

@@ -1,5 +1,5 @@
 <template lang="pug">
-section.textImage(:class="{reverse:props.blok.align == 'right'}")
+section.textImage(ref="$el" :class="{reverse:props.blok.align == 'right'}")
     .text(v-html="richText(props.blok.text)")
     .image(v-if="props.blok.image")
         img2x(:data="props.blok.image")
@@ -8,6 +8,22 @@ section.textImage(:class="{reverse:props.blok.align == 'right'}")
 <script setup>
 const props = defineProps(['blok']);
 const { richText } = richTextModule();
+const { gsap, SplitText, defaultTriggerConfig } = gsapModule();
+const $el = ref();
+
+onMounted(() => {
+    gsap.fromTo($el.value,
+    {
+        y: 10, 
+        opacity: 0
+    },
+    {
+        y:0, 
+        opacity: 1,
+        scrollTrigger: defaultTriggerConfig($el.value)
+    });
+})
+
 
 </script>
 

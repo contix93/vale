@@ -9,13 +9,14 @@
   },
   "devDependencies": {
     "@webdiscus/pug-loader": "^2.8.0",
-    "nuxt": "^3.0.0",
+    "nuxt": "^3.4.2",
     "pug": "^3.0.2",
     "sass": "^1.52.1",
     "sass-loader": "^10.2.1"
   },
   "dependencies": {
     "@google/model-viewer": "^3.0.0",
+    "@storyblok/nuxt": "^5.5.2",
     "axios": "^0.27.2",
     "gsap": "npm:@gsap/business@^3.11.4",
     "http-proxy-middleware": "^2.0.6",

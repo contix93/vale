@@ -1,6 +1,6 @@
 <template lang='pug'>
 #index
-    .loading(v-if="pending")
+    .loading(v-if="!story")
         mainLoading
     mainContent(v-else :story="story")
 </template>
@@ -10,14 +10,11 @@ definePageMeta({
 })
 const route = useRoute();
 var story = ref(null);
-var pending = ref(true);
-var error = ref(false);
 
 if(route.fullPath.includes('pages')){
-    const fetchRes = await useFetch('/api/storyblok/stories'+route.fullPath);
-    story = fetchRes.data;
-    pending = fetchRes.pending;
-    error = fetchRes.error;
+    const config = useRuntimeConfig();
+    const res = await useAsyncStoryblok(route.fullPath, { version: config.public.storyblokVersion });
+    story.value = res.value;
 }
 const layout = useLayout();
 layout.setCameraPositions(story && story.value && story.value.content && story.value.content.cameraPositions && story.value.content.cameraPositions.length > 0 ? story.value.content.cameraPositions : null)

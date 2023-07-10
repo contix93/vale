@@ -6,24 +6,26 @@
         .text(v-if="story.content.text" v-html="richText(story.content.text)")
     #page
         slot
-    .content(v-if="story && story.content && !error")
-        backgroundVideo(v-if="story.content && story.content.video" :video="story.content.video")
-
-        //gestire meglio la transizione di opacity
+    .content(v-if="story.content")
+        backgroundVideo(v-if="story.content.video" :video="story.content.video")
         modelContainer(v-if="layout.contentVisible.value" :model="story.content.asset" :exposure="story.content.exposure" :shadow-intensity="story.content.shadowIntensity" :autorotate="story.content.autorotate")
 </template>
 <script setup>
-const { data:story, pending, error } = await useFetch('/api/storyblok/stories/homepage');
+const config = useRuntimeConfig();
+const story = await useAsyncStoryblok('homepage', { version: config.public.storyblokVersion });
+
 const { richText } = richTextModule();
 const { gsap } = gsapModule();
 const layout = useLayout();
 const window = useWindow();
 onMounted(() => {
-    if(layout.contentVisible.value) handlePage(true)
+    if(layout.contentVisible.value) handlePage(true);
+    watch(layout.contentVisible, (to,from) => {
+        handlePage(to);
+    })
+
 })
-watch(layout.contentVisible, (to,from) => {
-    handlePage(to);
-})
+
 
 const handlePage = (open) => {
     if(open){

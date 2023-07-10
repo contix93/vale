@@ -1,12 +1,17 @@
-import { gsap, SplitText } from 'gsap/all';
+import { gsap, ScrollTrigger, SplitText} from 'gsap/all';
 export default () => {
-    onMounted(() => {
-        gsap.registerPlugin(SplitText);
-        /* gsap.registerPlugin(ScrollTrigger)
-        gsap.registerPlugin(DrawSVGPlugin);
-        gsap.registerPlugin(MotionPathPlugin);
-        gsap.registerPlugin(ScrollToPlugin);
-        gsap.registerPlugin(MotionPathHelper); */
-    })
-    return { gsap, SplitText }
+    gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(SplitText);
+    const defaultTriggerConfig = (trigger,start = "top 70%",end,scrub = false,markers = false)=>{
+        start = window.innerWidth <= 520 ? 'top 90%' : start;
+
+        return { 
+            scrub,
+            trigger,
+            start,
+            end,
+            markers
+        }
+    }
+    return { gsap, SplitText, ScrollTrigger, defaultTriggerConfig }
 }

@@ -33,7 +33,6 @@ class StoryApi {
                     ...options.params
                 }
             })
-           
             return res.data.story
         }catch {
             return {}

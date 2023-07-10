@@ -1,7 +1,7 @@
 <template lang="pug">
-.content
-    contentHeading(:title="props.story.content.title" :subtitle="props.story.content.subtitle")
-    component(v-for="blok in props.story.content.body" :key="blok._uid" :is="formatName(blok.component)" :blok="blok")
+.content(v-if="props.story")
+    contentHeading(:title="story.content.title" :subtitle="story.content.subtitle")
+    component(v-for="blok in story.content.body" :key="blok._uid" :is="formatName(blok.component)" :blok="blok")
 </template>
 <script setup>
 const props = defineProps(['story']);

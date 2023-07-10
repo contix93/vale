@@ -13,7 +13,6 @@ onMounted(() => {
     var title = new SplitText('#heading > .title > h1', {type:'words'});
     var subtitle = new SplitText('#heading > .subtitle > h2', {type:'words'});
 
-    console.log(title,subtitle)
     var tl = gsap.timeline();
     tl.fromTo(title.words,{y: 10, opacity: 0},{y:0, opacity: 1, stagger: 0.05});
     tl.fromTo(subtitle.words,{y: 10, opacity: 0},{y:0, opacity: 1, stagger: 0.05});

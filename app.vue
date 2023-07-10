@@ -1,6 +1,6 @@
 <template lang="pug">
 main
   NuxtLayout
-      NuxtLoadingIndicator
+      //- NuxtLoadingIndicator
       NuxtPage
 </template>
