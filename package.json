@@ -5,7 +5,13 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "buildDevelopment": "nuxt build",
+    "buildStaging": "nuxt build",
+    "buildProduction": "nuxt build",
+    "startDevelopment": "PORT=3020 nuxt start",
+    "startStaging": "PORT=3010 nuxt start",
+    "startProduction": "PORT=3000 nuxt start"
   },
   "devDependencies": {
     "@webdiscus/pug-loader": "^2.8.0",
